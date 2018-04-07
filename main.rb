@@ -4,9 +4,15 @@ class Main
   require 'net/http'
   token = 'YourToken'
   chatId = 'Channel Id'
+  
+
 
   Telegram::Bot::Client.run(token, logger: Logger.new($stderr)) do |bot|
     bot.logger.info('[News] Bot Startato')
+      #AntiSpam
+    if message.text.include? "http://"
+       bot.api.send_message(chat_id: message.chat.id, text: "<b>ALT!</b> Non puoi spammare <code>links</code>!
+end
      bot.listen do |message|
        case message.text
        when '/start'
